@@ -25,4 +25,17 @@ the left edge. In this region the function is increasing, and because it is
 a boundary, the points that contribute to the average are all taken from
 one side.
 
+## Local Linear Regression
 
+Local linear regression circumvents this sort of bias by fitting a line with
+least squares to the kernel-weighted data points for every prediction.
+
+The implementation in this script sacrifices efficiency for expressiveness.
+
+Instead of minimizing the residual sum of squares as usual, for each predicted
+point (x0) we find the linear fit, α, β in f(x0) = α + β * x0 that minimizes
+the residuals weighted by distance from the point by some kernel function.
+
+Notice that the bias on the left side has disappeared. Better predictions at
+boundaries is a big advantage of the local linear fit over the local constant
+of the weighted averages.
